@@ -35,9 +35,17 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/cloudinary'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+  serverMiddleware: [
+    { path: "/api", handler: "~/server-middleware/api.js" },],
+
+  cloudinary: {
+    cloudName: process.env.NUXT_ENV_CLOUDINARY_CLOUD_NAME,
+    secure: true
   }
 }
