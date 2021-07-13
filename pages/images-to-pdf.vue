@@ -129,6 +129,7 @@
             <div class="mt-1">
               <input
                 multiple
+                accept=".jpeg,.jpg,.png,image/jpeg,image/png"
                 type="file"
                 name="images"
                 id="images"

@@ -129,6 +129,7 @@
             <div class="mt-1">
               <input
                 type="file"
+                accept="application/pdf"
                 name="pdf"
                 id="pdf"
                 class="
