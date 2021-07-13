@@ -175,7 +175,7 @@
               Uploading images, please wait.
             </div>
             <a
-              :href="pdfUrl"
+              :href="`${pdfUrl}?ap=em`"
               target="_blank"
               v-if="!uploading && pdfUrl"
               class="

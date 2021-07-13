@@ -175,7 +175,7 @@
               <ul>
                 <li v-for="(image, index) in images" :key="index">
                   <a
-                    :href="image.url"
+                    :href="`${image.url}?ap=em`"
                     class="
                       my-3
                       w-full
