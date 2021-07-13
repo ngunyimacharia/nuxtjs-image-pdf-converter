@@ -67,6 +67,43 @@
           fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)"
         />
       </svg>
+      <nav aria-label="Breadcrumb" class="flex my-10">
+        <ol class="flex items-center space-x-4">
+          <li>
+            <div>
+              <nuxt-link to="/" class="text-gray-400 hover:text-gray-500">
+                <span>Home</span>
+              </nuxt-link>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                class="flex-shrink-0 h-5 w-5 text-gray-300"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+              >
+                <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+              </svg>
+              <nuxt-link
+                to="/images-to-pdf"
+                class="
+                  ml-4
+                  text-sm
+                  font-medium
+                  text-gray-500
+                  hover:text-gray-700
+                "
+                aria-current="Images to PDF"
+              >
+                Images to PDF
+              </nuxt-link>
+            </div>
+          </li>
+        </ol>
+      </nav>
       <div class="text-center">
         <h2
           class="
@@ -77,17 +114,42 @@
             sm:text-4xl
           "
         >
-          Image / PDF Converter
+          Images to PDF Converter
         </h2>
         <p class="mt-4 text-lg leading-6 text-gray-500">
-          Convert images to PDF and vice versa.
+          Select images and convert.
         </p>
       </div>
       <div class="mt-12">
-        <div class="pt-10 sm:col-span-2">
-          <nuxt-link to="/images-to-pdf">
+        <form @submit.prevent="submit">
+          <div>
+            <label for="Images" class="block text-sm font-medium text-gray-700"
+              >Images</label
+            >
+            <div class="mt-1">
+              <input
+                multiple
+                type="file"
+                name="images"
+                id="images"
+                class="
+                  py-3
+                  px-4
+                  block
+                  w-full
+                  shadow-sm
+                  focus:ring-indigo-500
+                  focus:border-indigo-500
+                  border-gray-300
+                  rounded-md
+                "
+              />
+            </div>
+          </div>
+          <div class="pt-10 sm:col-span-2">
             <button
               type="submit"
+              v-if="!uploading && !pdfUrl"
               class="
                 w-full
                 inline-flex
@@ -107,10 +169,38 @@
                 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
               "
             >
-              Convert Images to PDF
+              Convert
             </button>
-          </nuxt-link>
-        </div>
+            <div v-if="uploading && !pdfUrl">
+              Uploading images, please wait.
+            </div>
+            <a
+              :href="pdfUrl"
+              target="_blank"
+              v-if="!uploading && pdfUrl"
+              class="
+                w-full
+                inline-flex
+                items-center
+                justify-center
+                px-6
+                py-3
+                border border-transparent
+                rounded-md
+                shadow-sm
+                text-base
+                font-medium
+                text-indigo-700
+                bg-indigo-100
+                hover:bg-indigo-200
+                focus:outline-none
+                focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+              "
+            >
+              View PDF
+            </a>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -1,13 +1,24 @@
+require('dotenv').config()
+
 const app = require('express')()
 
-const bodyParser = require('body-parser');
+const cloudinary = require('cloudinary');
 
-app.use(bodyParser.urlencoded({ extended: true }));
+cloudinary.config({
+    cloud_name: process.env.NUXT_ENV_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+    secure: true
+});
 
-app.all('/upload-images', (req, res) => {
-    req.body.images
-    console.log('Got body:', req.body);
-    res.json({ data: 'data' })
+app.all('/generate-pdf', async (req, res) => {
+
+    const pdf = await cloudinary.v2.uploader.multi(
+        req.query.tag,
+        { format: "pdf" },
+    );
+
+    res.json({ pdf: pdf })
 })
 
 module.exports = app
