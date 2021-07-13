@@ -243,7 +243,9 @@ export default {
           });
         })
       );
-      const resp = await this.$axios.get(`/api/generate-pdf?tag=${randomTag}`);
+      const resp = await this.$axios.get(
+        `${window.location.origin}/api/generate-pdf?tag=${randomTag}`
+      );
 
       this.pdfUrl = resp.data.pdf.secure_url;
 
