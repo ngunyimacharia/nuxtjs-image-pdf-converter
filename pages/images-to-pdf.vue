@@ -213,9 +213,6 @@ export default {
     return {
       uploading: false,
       pdfUrl: null,
-      form: {
-        type: 0,
-      },
     };
   },
   methods: {

@@ -12,7 +12,6 @@ cloudinary.config({
 });
 
 app.all('/generate-pdf', async (req, res) => {
-
     const pdf = await cloudinary.v2.uploader.multi(
         req.query.tag,
         { format: "pdf" },

@@ -216,9 +216,6 @@ export default {
     return {
       uploading: false,
       images: null,
-      form: {
-        type: 0,
-      },
     };
   },
   methods: {
@@ -244,8 +241,6 @@ export default {
         upload_preset: "nuxtjs-image-pdf-converter",
         folder: `nuxtjs-image-pdf-converter/PDFs`,
       });
-
-      console.log(upload);
 
       this.images = [];
 
